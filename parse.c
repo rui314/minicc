@@ -1300,10 +1300,11 @@ static Initializer *initializer(Token **rest, Token *tok, Type *ty, Type **new_t
     ty = copy_struct_type(ty);
 
     Member *mem = ty->members;
-    while (mem->next)
+    while (mem->next) {
       mem = mem->next;
-    mem->ty = init->children[mem->idx]->ty;
-    ty->size += mem->ty->size;
+      mem->ty = init->children[mem->idx]->ty;
+      ty->size += mem->ty->size;
+    }
 
     *new_ty = ty;
     return init;
