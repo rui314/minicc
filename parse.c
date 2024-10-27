@@ -598,7 +598,6 @@ static Type *func_params(Token **rest, Token *tok, Type *ty) {
     if (equal(tok, "...")) {
       is_variadic = true;
       tok = tok->next;
-      skip(tok, ")");
       break;
     }
 
@@ -628,7 +627,7 @@ static Type *func_params(Token **rest, Token *tok, Type *ty) {
   ty = func_type(ty);
   ty->params = head.next;
   ty->is_variadic = is_variadic;
-  *rest = tok->next;
+  *rest = skip(tok, ")");
   return ty;
 }
 
