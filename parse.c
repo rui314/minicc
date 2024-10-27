@@ -1101,11 +1101,6 @@ static void array_initializer1(Token **rest, Token *tok, Initializer *init) {
 
   bool first = true;
 
-  if (init->is_flexible) {
-    int len = count_array_init_elements(tok, init->ty);
-    *init = *new_initializer(array_of(init->ty->base, len), false);
-  }
-
   for (int i = 0; !consume_end(rest, tok); i++) {
     if (!first)
       tok = skip(tok, ",");
