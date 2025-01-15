@@ -84,6 +84,8 @@ static FileType parse_opt_x(char *s) {
 }
 
 static char *quote_makefile(char *s) {
+  if (!s) return NULL;
+  
   char *buf = calloc(1, strlen(s) * 2 + 1);
 
   for (int i = 0, j = 0; s[i]; i++) {
